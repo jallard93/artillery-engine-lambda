@@ -101,6 +101,7 @@ LambdaEngine.prototype.step = function step (rs, ee, opts) {
 
   if (rs.invoke) {
     console.debug("INVOKE INVOKE INVOKE INVOKE");
+    debug("BEGINNING TO INVOKE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
     return function invoke (context, callback) {
 
       context.funcs.$increment = self.$increment;
@@ -240,6 +241,9 @@ LambdaEngine.prototype.step = function step (rs, ee, opts) {
         }
       )
     };
+  } else {
+    console.debug("NOTHING TO INVOKE!!!!!!!!!!!!!")
+    debug.debug("NOTHING TO INVOKE!!!!!!!!!!!!!")
   }
 
   return function (context, callback) {
