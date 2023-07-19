@@ -5,7 +5,7 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
 const aws = require('aws-sdk');
-const debug = require('debug');
+const debug = require('debug')('aws');
 const A = require('async');
 const _ = require('lodash');
 const helpers = require('@artilleryio/int-commons').engine_util;
