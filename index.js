@@ -52,6 +52,8 @@ LambdaEngine.prototype.createScenario = function createScenario (scenarioSpec, e
 };
 
 LambdaEngine.prototype.step = function step (rs, ee, opts) {
+  console.debug("DEBUG DEBUG DEBUG DEBUG")
+  debug("BEGINNING STEP!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
   opts = opts || {};
   let self = this;
 
@@ -78,6 +80,7 @@ LambdaEngine.prototype.step = function step (rs, ee, opts) {
   }
 
   if (rs.think) {
+    debug("BEGINNING TO THINK!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
     return this.helpers.createThink(rs, _.get(self.config, 'defaults.think', {}));
   }
 
