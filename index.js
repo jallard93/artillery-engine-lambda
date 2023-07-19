@@ -5,7 +5,7 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
 const aws = require('aws-sdk');
-const debug = require('debug')('aws');
+const debug = require('debug')('index');
 const A = require('async');
 const _ = require('lodash');
 const helpers = require('@artilleryio/int-commons').engine_util;
@@ -214,21 +214,21 @@ LambdaEngine.prototype.step = function step (rs, ee, opts) {
             );
 
           });
-          console.log("------------ TESTING -------------", debug.enable("test"));
-          console.log(request, debug.enable("test"));
+          debug("------------ TESTING -------------");
+          debug(request);
           request.
             on('success', function(response) {
-              console.log("------------ SUCCESS ------------", debug.enable("test"));
-              console.log(response, debug.enable("test"));
+              debug("------------ SUCCESS ------------");
+              debug(response);
             }).
             on('error', function(error, response) {
-              console.log("------------ ERROR ------------", debug.enable("test"));
-              console.log(error, debug.enable("test"));
-              console.log(response, debug.enable("test"));
+              debug("------------ ERROR ------------");
+              debug(error);
+              debug(response);
             }).
             on('complete', function(response) {
-              console.log("------------ COMPLETE ------------", debug.enable("test"));
-              console.log(response, debug.enable("test"));
+              debug("------------ COMPLETE ------------");
+              debug(response);
             }).
             send();
         }
@@ -251,7 +251,7 @@ LambdaEngine.prototype.compile = function compile (tasks, scenarioSpec, ee) {
 
       if (self.script.config.lambda.function) {
         opts.endpoint = self.script.config.lambda.function;
-        debug(self.script.config.lambda.function)
+        debug("Debug: " + self.script.config.lambda.function)
       }
 
       initialContext.lambda = new aws.Lambda(opts);
