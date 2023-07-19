@@ -80,11 +80,13 @@ LambdaEngine.prototype.step = function step (rs, ee, opts) {
   }
 
   if (rs.think) {
-    debug("BEGINNING TO THINK!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+    console.debug("THINK THINK THINK THINK");
+    debug("BEGINNING TO THINK!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
     return this.helpers.createThink(rs, _.get(self.config, 'defaults.think', {}));
   }
 
   if (rs.function) {
+    console.debug("FUNCTION FUNCTION FUNCTION FUNCTION");
     return function (context, callback) {
       let func = self.config.processor[rs.function];
       if (!func) {
@@ -98,6 +100,7 @@ LambdaEngine.prototype.step = function step (rs, ee, opts) {
   }
 
   if (rs.invoke) {
+    console.debug("INVOKE INVOKE INVOKE INVOKE");
     return function invoke (context, callback) {
 
       context.funcs.$increment = self.$increment;
