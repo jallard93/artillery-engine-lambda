@@ -147,7 +147,7 @@ LambdaEngine.prototype.step = function step (rs, ee, opts) {
           awsParams.Payload = helpers.template(payload, context);
 
           // invoke lambda function
-          context.lambda.invoke(awsParams, function (err, data) {
+          var request = context.lambda.invoke(awsParams, function (err, data) {
 
             if (err) {
               debug(err);
@@ -214,6 +214,18 @@ LambdaEngine.prototype.step = function step (rs, ee, opts) {
             );
 
           });
+          request.
+            on('success', function(response) {
+              debug(response);
+            }).
+            on('error', function(error, response) {
+              debug(error);
+              debug(response);
+            }).
+            on('complete', function(response) {
+              debug(response);
+            }).
+            send();
         }
       )
     };
@@ -234,6 +246,7 @@ LambdaEngine.prototype.compile = function compile (tasks, scenarioSpec, ee) {
 
       if (self.script.config.lambda.function) {
         opts.endpoint = self.script.config.lambda.function;
+        debug(self.script.config.lambda.function)
       }
 
       initialContext.lambda = new aws.Lambda(opts);
