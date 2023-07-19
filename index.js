@@ -8,7 +8,7 @@ const aws = require('aws-sdk');
 const debug = require('debug')('engine:lambda');
 const A = require('async');
 const _ = require('lodash');
-const helpers = require('artillery/core/lib/engine_util');
+const helpers = require('@artilleryio/int-commons').engine_util;
 
 const utils = require('./utils');
 
@@ -132,6 +132,7 @@ LambdaEngine.prototype.step = function step (rs, ee, opts) {
         context,
         ee,
         function done(err) {
+          console.log("Error")
           if (err) {
             debug(err);
             return callback(err, context);
