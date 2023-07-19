@@ -243,7 +243,7 @@ LambdaEngine.prototype.step = function step (rs, ee, opts) {
     };
   } else {
     console.debug("NOTHING TO INVOKE!!!!!!!!!!!!!")
-    debug.debug("NOTHING TO INVOKE!!!!!!!!!!!!!")
+    debug("NOTHING TO INVOKE!!!!!!!!!!!!!")
   }
 
   return function (context, callback) {
