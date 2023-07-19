@@ -5,7 +5,7 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
 const aws = require('aws-sdk');
-const debug = require('debug')('engine:lambda');
+const debug = require('debug');
 const A = require('async');
 const _ = require('lodash');
 const helpers = require('@artilleryio/int-commons').engine_util;
@@ -214,16 +214,21 @@ LambdaEngine.prototype.step = function step (rs, ee, opts) {
             );
 
           });
+          console.log("------------ TESTING -------------", debug.enable("test"));
+          console.log(request, debug.enable("test"));
           request.
             on('success', function(response) {
-              debug(response);
+              console.log("------------ SUCCESS ------------", debug.enable("test"));
+              console.log(response, debug.enable("test"));
             }).
             on('error', function(error, response) {
-              debug(error);
-              debug(response);
+              console.log("------------ ERROR ------------", debug.enable("test"));
+              console.log(error, debug.enable("test"));
+              console.log(response, debug.enable("test"));
             }).
             on('complete', function(response) {
-              debug(response);
+              console.log("------------ COMPLETE ------------", debug.enable("test"));
+              console.log(response, debug.enable("test"));
             }).
             send();
         }
