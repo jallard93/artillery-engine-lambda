@@ -132,7 +132,6 @@ LambdaEngine.prototype.step = function step (rs, ee, opts) {
         context,
         ee,
         function done(err) {
-          console.log("Error")
           if (err) {
             debug(err);
             return callback(err, context);
