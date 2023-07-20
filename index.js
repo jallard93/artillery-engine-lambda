@@ -4,7 +4,7 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-const aws = require('aws-sdk');
+const {LambdaClient} = require("@aws-sdk/client-lambda");
 const debug = require('debug')('index');
 const A = require('async');
 const _ = require('lodash');
@@ -240,7 +240,7 @@ LambdaEngine.prototype.compile = function compile (tasks, scenarioSpec, ee) {
         opts.endpoint = self.script.config.lambda.function;
       }
 
-      initialContext.lambda = new aws.Lambda(opts);
+      initialContext.lambda = new LambdaClient(opts);
       ee.emit('started');
       return next(null, initialContext);
     };
