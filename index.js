@@ -52,8 +52,6 @@ LambdaEngine.prototype.createScenario = function createScenario (scenarioSpec, e
 };
 
 LambdaEngine.prototype.step = function step (rs, ee, opts) {
-  console.debug("DEBUG DEBUG DEBUG DEBUG")
-  debug("BEGINNING STEP!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
   opts = opts || {};
   let self = this;
 
@@ -80,13 +78,10 @@ LambdaEngine.prototype.step = function step (rs, ee, opts) {
   }
 
   if (rs.think) {
-    console.debug("THINK THINK THINK THINK");
-    debug("BEGINNING TO THINK!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
     return this.helpers.createThink(rs, _.get(self.config, 'defaults.think', {}));
   }
 
   if (rs.function) {
-    console.debug("FUNCTION FUNCTION FUNCTION FUNCTION");
     return function (context, callback) {
       let func = self.config.processor[rs.function];
       if (!func) {
@@ -100,8 +95,6 @@ LambdaEngine.prototype.step = function step (rs, ee, opts) {
   }
 
   if (rs.invoke) {
-    console.debug("INVOKE INVOKE INVOKE INVOKE");
-    debug("BEGINNING TO INVOKE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
     return function invoke (context, callback) {
 
       context.funcs.$increment = self.$increment;
@@ -225,29 +218,9 @@ LambdaEngine.prototype.step = function step (rs, ee, opts) {
             );
 
           });
-          debug("------------ TESTING -------------");
-          debug(request);
-          request.
-            on('success', function(response) {
-              debug("------------ SUCCESS ------------");
-              debug(response);
-            }).
-            on('error', function(error, response) {
-              debug("------------ ERROR ------------");
-              debug(error);
-              debug(response);
-            }).
-            on('complete', function(response) {
-              debug("------------ COMPLETE ------------");
-              debug(response);
-            }).
-            send();
         }
       )
     };
-  } else {
-    console.debug("NOTHING TO INVOKE!!!!!!!!!!!!!")
-    debug("NOTHING TO INVOKE!!!!!!!!!!!!!")
   }
 
   return function (context, callback) {
@@ -265,7 +238,6 @@ LambdaEngine.prototype.compile = function compile (tasks, scenarioSpec, ee) {
 
       if (self.script.config.lambda.function) {
         opts.endpoint = self.script.config.lambda.function;
-        debug("Debug: " + self.script.config.lambda.function)
       }
 
       initialContext.lambda = new aws.Lambda(opts);
