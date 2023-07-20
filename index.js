@@ -186,7 +186,9 @@ LambdaEngine.prototype.step = function step (rs, ee, opts) {
               response,
               context,
               function captured(err, result) {
-                if(result && result.captures) {
+                console.debug("- - - - - - - - Checking for captures...");
+                if(result !== null && result.captures !== null) {
+                  console.debug("- - - - - - - - Not null captures...");
                     // TODO handle matches
                     let haveFailedCaptures = _.some(result.captures, function(v, k) {
                       return v === '';
@@ -197,6 +199,8 @@ LambdaEngine.prototype.step = function step (rs, ee, opts) {
                         _.set(context.vars, k, v);
                       });
                     }
+                } else {
+                  console.debug("- - - - - - - - Null captures...");
                 }
 
                 const afterResponseFunctionNames = _.concat(opts.afterResponse || [], rs.invoke.afterResponse || []);
